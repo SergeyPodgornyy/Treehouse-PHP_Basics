@@ -1,15 +1,28 @@
 <?php
 
+define('USE_FULL_NAME', TRUE);
+
 define('YEAR', 2015);
-define('JOB_TITLE', "Teacher");
 
-// invalid constant name
-// define('2LEGIT', "to quit");
+$name = "Sergey";
+$lastname = "Podgornyy";
+$location = "Kiev, Ukraine";
+$role="Student";
+//$full_name = "Mike The Frog";
 
-$name = "Mike";
-$location = "Orlando, FL";
-$full_name = "Mike The Frog";
-$name = $full_name;
+if(USE_FULL_NAME)
+  $full_name = $name.' '.$lastname;
+else
+  $full_name = $name;
+
+if($role=="Teacher")
+  $info="Hi, I'm a Teacher at Treehouse";
+elseif($role=="Student")
+  $info="Hi, I'm a Student at Treehouse";
+else
+  $info="I am just visiting";
+
+$social_icons = array('twitter'=>'https://twitter.com/KoeplerF', 'google'=>'https://plus.google.com/u/0/115551077481455725916', 'linkedin'=>'https://www.linkedin.com/profile/view?id=AAIAABIRopMBJyptswlc-pvpOQs4CaCSzbY0i80', 'github'=>'https://github.com/SergeyPodgornyy', 'treehouse'=>'http://teamtreehouse.com/sergeypodgornyy');
 
 ?>
 
@@ -24,56 +37,29 @@ $name = $full_name;
   <body>
     <section class="sidebar text-center">
       <div class="avatar">
-        <img src="img/avatar.png" alt="Mike The Frog">
+        <img src="img/sergey.jpg" alt="<?php echo $full_name ?>">
       </div>
-      <h1><?php echo $name ?></h1>
+      <h1><?php echo $full_name ?></h1>
       <p><?php echo $location?></p>
-      <p><?php echo JOB_TITLE;?></p>
+      <p><?php echo $role;?></p>
       <hr />
       <p>Welcome to PHP Basics!</p>
       <p><?php echo YEAR;?></p>
       <hr />
       <ul class="social">
-        <li><a href=""><span class="icon twitter"></span></a></li>
+      <?php
+        foreach($social_icons as $icon=>$link){
+      ?>
+          <li><a href="<?php echo $link ?>" target="_blank"><span class="icon <?php echo $icon ?>"></span></a></li>
+      <?php
+        }
+      ?>
       </ul>
     </section>
     <section class="main">
+      <p><?php echo $info;?></p>
       <p>Let's Get Started!</p>
       <p><?php echo "Hello World";?></p>
-      <pre>
-        <?php
-         echo "<br>";
-         $greeting = "Hello, Friends!\n";
-         $second_greeting = "How are you today?\n";
-         $greeting{0} = "J";
-         echo $greeting;
-         echo $second_greeting;
-         echo "<br>";
-
-         //$array = array();
-         //$array_example = [];
-         $eye_colors = array('blue', 'green', 'brown');
-         
-         echo $eye_colors[0]."<br>";
-         $eye_colors[1] = 'hazel';
-         $eye_colors[] = 'amber';
-         echo $eye_colors[1]."<br><br>";
-
-         print_r($eye_colors);
-
-         $eye_colors = array(
-          "chris"=>"blue",
-          "tom"=>"green",
-          "jim"=>"brown");
-         
-         $eye_colors['jim']="green";
-         $eye_colors['tom']="brown";
-         $eye_colors['chuck'] = 'blue';
-         echo "<br><br>";
-
-         print_r($eye_colors);
-        ?>
-      </pre>
     </section>
   </body>
 </html>
